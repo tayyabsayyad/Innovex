@@ -1,0 +1,426 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>MECH DEPT</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="https://dl.dropbox.com/s/bz40gbg1sn8ilkc/innovLogo.png">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKS4J96H6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZKS4J96H6V');
+    </script>
+    <link rel="stylesheet" href="{% static 'website1/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+    /* Style the input field */
+    #myInput{
+      padding: 50px;
+      margin-top: -20px;
+      border: 0;
+      border-radius: 0;
+      background: #f1f1f1;
+    } 
+
+     @media screen and (min-width: 676px) {
+        .modal-dialog  {
+          max-width: 1300px; /* New width for default modal */
+        }
+    }
+    </style>
+</head>
+
+<body>
+ 
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" >
+        <div class="container">
+  
+
+            <a class="navbar-brand logo" href="/"> 
+                <img src="{% static 'website1/img/dbitlogo.png' %}" width="50" height="50" class="d-inline-block align-top" alt="">
+          
+            </a>
+            <div class="vl" style="height: 45px; border-left: solid black;"></div>&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand logo" href="/">
+                <img src="{% static 'website1/img/innovLogo.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+            INNOVEX
+            </a>
+
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav">
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link " href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itdept">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compsdept">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="mechdept">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                         {{ user.username }}
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/logout" >Logout</a></li>
+                      </ul>
+                    </li>
+                    {% endif %}
+                    <!-- <li class="nav-item"><a class="btn btn-dark" role="button" href="#">Login</a></li> -->
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    
+
+     <div class="row">
+      <div class="col-md">
+        <h1 class="font-weight-bold">MECHANICAL DEPARTMENT</h1>
+      </div>
+
+      <div class="col-md-2" style="padding-right: 30px;padding-top: 10px;  ">
+        <div class="dropdown">
+          <button id="1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Project Domain
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a id="d1" href="#" onclick="filter(document.getElementById('d1').innerHTML);">All</a></li>
+            <li><a id="d2" href="#" onclick="filter(document.getElementById('d2').innerHTML);">Product Development</a></li>
+            <li><a id="d3" href="#" onclick="filter(document.getElementById('d3').innerHTML);">Research</a></li>
+            <li><a id="d4" href="#" onclick="filter(document.getElementById('d4').innerHTML);">Community welfare</a></li>
+            <li><a id="d5" href="#" onclick="filter(document.getElementById('d5').innerHTML);">Env. Sustainability</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function filter(p){
+        l=["Product Development","Research","Community welfare","Env. Sustainability"]
+        var i=0;
+        for (i = 0; i < l.length; i++){
+                  console.log(l[i]);
+                  document.getElementById(l[i]).style.display="none";
+            }
+          if(p=="All")
+          {
+            for (i = 0; i < l.length; i++){
+                document.getElementById(l[i]).style.display="block";
+              }
+          }
+          else{
+            document.getElementById(p).style.display="block";
+          }
+    }
+    </script>
+
+<!-- =============================== category 1======================== -->
+<div id="Product Development">
+    <hr style="height:3px;border-width:0;background-color:#000">
+      <h5 class="font-weight-bold">PRODUCT DEVELOPMENT</h5>
+    <div class="row">
+      <!-- dynamic rendering -->
+      {% for d_pd in datamech_pd %}
+      <div class="col-lg-3">
+          <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_pd.proj_id }}">
+            {% if d_pd.youtube_link|length > 5 %}            
+            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_pd.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% else %}
+            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_pd.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ d_pd.proj_title }}</h5>
+              <!-- <p class="card-text-bold">Traffic Signal Duration Control Using Deep Learning.</p> -->
+              <p class="card-text"><small class="text-muted">
+                {% if d_pd.mem1_name != "0" %}
+                   {{ d_pd.mem1_name }} 
+                   {% endif %} 
+                {% if d_pd.mem2_name != "0" %} 
+                  | {{ d_pd.mem2_name }} 
+                  {% endif %}  
+                {% if d_pd.mem3_name != "0" %}
+                  | {{ d_pd.mem3_name }} 
+                  {% endif %} 
+                {% if d_pd.mem4_name != "0" %}
+                  | {{ d_pd.mem4_name }}
+                {% endif %} 
+              </small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+<!-- =============================== category 2======================== -->
+<div id="Research">
+    <hr style="height:3px;border-width:0;background-color:#000">
+      <h5 class="font-weight-bold">RESEARCH BASED</h5>
+    <div class="row">
+      <!-- dynamic rendering -->
+      {% for d_rb in datamech_rb %}
+      <div class="col-lg-3">
+          <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_rb.proj_id }}">
+            {% if d_rb.youtube_link|length > 5 %}            
+            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_rb.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% else %}
+            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_rb.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ d_rb.proj_title }}</h5>
+              <!-- <p class="card-text-bold">Traffic Signal Duration Control Using Deep Learning.</p> -->
+              <p class="card-text"><small class="text-muted">
+                {% if d_rb.mem1_name != "0" %}
+                   {{ d_rb.mem1_name }}
+                   {% endif %}  
+                {% if d_rb.mem2_name != "0" %} 
+                  | {{ d_rb.mem2_name }} 
+                  {% endif %}  
+                {% if d_rb.mem3_name != "0" %}
+                  | {{ d_rb.mem3_name }} 
+                  {% endif %} 
+                {% if d_rb.mem4_name != "0" %}
+                  | {{ d_rb.mem4_name }}
+                {% endif %} 
+              </small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+<!-- =============================== category 3======================== -->
+<div id="Env. Sustainability">
+    <hr style="height:3px;border-width:0;background-color:#000">
+      <h5 class="font-weight-bold">ENVIRONMENT SUSTAINABILITY</h5>
+    <div class="row">
+      <!-- dynamic rendering -->
+      {% for d_env in datamech_env %}
+      <div class="col-lg-3">
+          <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_env.proj_id }}">
+            {% if d_env.youtube_link|length > 5 %}            
+            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_env.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% else %}
+            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_env.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ d_env.proj_title }}</h5>
+              <!-- <p class="card-text-bold">Traffic Signal Duration Control Using Deep Learning.</p> -->
+              <p class="card-text"><small class="text-muted">
+                {% if d_env.mem1_name != "0" %}
+                   {{ d_env.mem1_name }} 
+                   {% endif %} 
+                {% if d_env.mem2_name != "0" %} 
+                  | {{ d_env.mem2_name }} 
+                  {% endif %}  
+                {% if d_env.mem3_name != "0" %}
+                  | {{ d_env.mem3_name }} 
+                  {% endif %} 
+                {% if d_env.mem4_name != "0" %}
+                  | {{ d_env.mem4_name }}
+                {% endif %} 
+              </small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+<!-- =============================== category 4======================== -->
+<div id="Community welfare">
+    <hr style="height:3px;border-width:0;background-color:#000">
+      <h5 class="font-weight-bold">COMMUNITY WELFARE</h5>
+    <div class="row">
+      <!-- dynamic rendering -->
+      {% for d_cw in datamech_cw %}
+      <div class="col-lg-3">
+          <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_cw.proj_id }}">
+            {% if d_env.youtube_link|length > 5 %}
+            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_cw.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% else %}
+            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_cw.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ d_cw.proj_title }}</h5>
+              <!-- <p class="card-text-bold">Traffic Signal Duration Control Using Deep Learning.</p> -->
+              <p class="card-text"><small class="text-muted">
+                {% if d_cw.mem1_name != "0" %}
+                   {{ d_cw.mem1_name }} 
+                   {% endif %} 
+                {% if d_cw.mem2_name != "0" %} 
+                  | {{ d_cw.mem2_name }} 
+                  {% endif %}  
+                {% if d_cw.mem3_name != "0" %}
+                  | {{ d_cw.mem3_name }} 
+                  {% endif %} 
+                {% if d_cw.mem4_name != "0" %}
+                  | {{ d_cw.mem4_name }}
+                {% endif %} 
+              </small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+<br>
+<br>
+<br>
+</div>
+
+
+
+<!-- ========================================== Pop 1 =========================================== -->
+  {% for d in datamech %}
+  <div class="modal fade bd-example-modal-lg" id="proj{{ d.proj_id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- modal content goes here -->
+        <div class="container" style="padding: 10px;">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="embed-responsive embed-responsive-16by9">
+                {% if d.youtube_link|length > 5 %}
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{d.youtube_link|slice:'17:'}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% else %}
+                <iframe class="embed-responsive-item" src="{{d.drive_link|slice:':66'}}preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="col-lg-5">
+              <center><h3 class="card-title" align="left">{{ d.proj_title }}</h3></center>
+              <p style="font-size: 15px;" class="card-text1"><strong class="text bg-primary text-white">&nbsp;{{ d.proj_category }}&nbsp;</strong></p>
+              <p class="card-text"><strong class="text-muted"><i class="fa fa-linkedin-square"> </i>&nbsp;
+                <a href="{{d.mem1_linkedin}}" target="_blank">{{ d.mem1_name }}</a>
+                {% if d.mem2_name != "0" %} 
+                &nbsp;|&nbsp; <a href="{{d.mem2_linkedin}}" target="_blank">{{ d.mem2_name }}</a> 
+                {% endif %}
+                {% if d.mem3_name != "0" %}
+                &nbsp;| &nbsp;<a href="{{d.mem3_linkedin}}" target="_blank">{{ d.mem3_name }}</a> 
+                {% endif %}
+                {% if d.mem4_name != "0" %}
+                &nbsp;| &nbsp;<a href="{{d.mem4_linkedin}}" target="_blank">{{ d.mem4_name }}</a>
+                {% endif %}
+              </strong></p>
+              <p class="card-text">{{ d.proj_description }}
+              </p>
+              <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{d.tech_aspects}}" target="_blank"><button type="button" class="btn btn-dark btn-sm col-6">Technical aspects / poster</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <button type="button" class="btn btn-primary btn-sm col-5" data-toggle="collapse" data-target="#demo">Give your feedback</button> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- feedback accordion -->
+          <br>
+          <div id="demo"  style="background-color: #e0ebeb">
+            <br>
+            <center><h3>Rate the project</h3></center>
+            <br>
+            <form method="post"> {% csrf_token %}
+              <input type="hidden" name="for_proj" value="{{d.proj_title}}" >
+              <div class="row">
+                <div class="col-lg-5">
+                  <center><h5>What is your overall rating for the project: </h5></center>
+                </div>
+                <div class="col-lg-7">
+                  <div class="form-group" style="padding-right:10px;padding-left:10px; " >
+                    <select class="form-control" id="exampleFormControlSelect1" name="rating"  >
+                      <option value="5">Excellent</option>
+                      <option value="4">Very good</option>
+                      <option value="3">Good</option>
+                      <option value="2">Average</option>
+                      <option value="1">Poor</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5">
+                  <center><h5>Your comments: </h5></center>
+                </div>
+                <div class="col-lg-7 ">
+                  <div class="form-group" style="padding: 10px;">
+                    <textarea  class="form-control" id="exampleFormControlTextarea1" rows="3" name="comments"></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+              <br>
+
+            </form>
+          </div>
+          <!-- feedback end -->
+
+        </div>
+        <!-- modal content end -->
+        <div class="modal-footer">
+          <button type="button" id="proj{{ d.proj_id }}" onclick="stopVideo(this.id)" class="btn btn-secondary" data-dismiss="modal" style="background-color: grey;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+<!-- ===================================== Footer ======================================== -->
+
+    <footer class="page-footer">
+        <div class="container">
+            <!-- <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div> -->
+            <div class="font-weight-bold">Connect with us</div>
+            <div class="social-icons">
+              <a target="_blank" href="https://www.facebook.com/dbitofficial/"><i class="icon ion-social-facebook"></i></a>
+              <a target="_blank" href="https://instagram.com/dbitofficial?igshid=1804zdgob938u"><i class="icon ion-social-instagram-outline"></i></a>
+              <a target="_blank" href="https://twitter.com/dbit_mumbai?s=09"><i class="icon ion-social-twitter"></i></a>
+              <a target="_blank" href="https://youtube.com/channel/UC_GX-7wsZJMhc3lYgEMkAxA"><i class="icon ion-social-youtube"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/school/don-bosco-institute-of-technology"><i class="icon ion-social-linkedin"></i></a>
+            </div>
+
+            <div class="font-weight-bold" style="font-size: 15px;">Don Bosco Institute Of Technology, Premier Automobiles Road, Opp. HDIL Premier Exotica,
+Kurla (W), Mumbai. Maharashtra – 400070</div>
+            <div class="font-weight-bold" style="font-size: 15px;">&copy;2021 DBIT. All Rights Reserved.</div>
+            <div class="font-weight-bold">Designed and developed by<a href="#" style="color: blue">Innovex Website Team</a></div>
+
+
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script type="text/javascript">
+      $(".datepicker").each((function(){new Pikaday({field:this})}));
+
+      function stopVideo(id){
+      // console.log(id)
+      id_new="#"+id+" iframe";
+      // console.log(id_new)
+      var video= $(id_new).attr("src");
+      // console.log(video)
+      $(id_new).attr("src", "");
+      $(id_new).attr("src", video);
+    }
+      
+    </script>
+</body>
+
+</html>

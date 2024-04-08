@@ -1,0 +1,623 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>INNOVEX 2024</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'website1/img/innovLogo.png' %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKS4J96H6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZKS4J96H6V');
+    </script>
+    <link rel="stylesheet" href="{% static 'website1/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+      
+      @media (min-width: 600px) {
+        #Brochure{
+          padding-left: 10%;
+          padding-right: 10%;
+        }
+      } 
+
+    </style>
+
+</head>
+<body>
+
+
+    <!-- navbar navbar-expand-lg navbar-light bg-light -->
+    <!-- navbar navbar-expand-lg fixed-top navbar-light bg-light ======main -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient ==== og -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient -->
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar gradient" >
+        <div class="container">
+            <!-- <a class="navbar-brand logo" href="#">Brand</a> -->
+
+            <a class="navbar-brand logo" href="/"> 
+                <img src="{% static 'website1/img/dbitlogo.png' %}" width="50" height="50" class="d-inline-block align-top" alt="">
+          
+            </a>
+            <div class="vl" style="height: 45px; border-left: solid black;"></div>&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand logo" href="/">
+                <img src="{% static 'website1/img/innovLogo.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+            INNOVEX
+            </a>
+              
+
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav">
+               <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="/">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="itdept">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compsdept">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html#Innovex">BROCHURE</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                         {{ user.username }}
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/logout" >Logout</a></li>
+                      </ul>
+                    </li>
+                    {% else %}
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% provider_login_url 'google' %}?next=/editdata">Login</a></li>
+                    {% endif %}
+
+                    <!-- {% if user.is_authenticated %}
+                      <li class="nav-item"><p>Hello, {{ user.username }}</p></li>
+                    {% else %}
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% provider_login_url 'google' %}">Login</a></li>
+                      
+                    {% endif %} -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    
+
+
+    <!-- ========================================================== -->
+
+    <!-- ========================= 3d  Carousal  ====================== -->
+
+    <section id="slider">
+      <input type="radio" name="slider" id="s1">
+      <input type="radio" name="slider" id="s2">
+      <input type="radio" name="slider" id="s3" checked>
+      <input type="radio" name="slider" id="s4">
+      <input type="radio" name="slider" id="s5">
+      <label for="s1" id="slide1">
+        <img src="{% static 'website1/img/slider/DBCL-INNOVEX_1.jpeg' %}" height="100%" width="100%">
+      </label>
+      <label for="s2" id="slide2">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_2.png' %}" height="100%" width="100%">
+      </label>
+      <label for="s3" id="slide3">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_3.png' %}" height="100%" width="100%">
+      </label>
+      <label for="s4" id="slide4">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_4.jpeg' %}" height="100%" width="100%">
+      </label>
+      <label for="s5" id="slide5">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_5.jpeg' %}" height="100%" width="100%">
+      </label>
+        <label for="s6" id="slide6">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_6.jpeg' %}" height="100%" width="100%">
+      </label>
+         <label for="s7" id="slide7">
+            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_7.jpeg' %}" height="100%" width="100%">
+      </label>
+    </section>
+
+
+    <!-- =================================================================== -->
+
+    <!-- ======================== INNOVEX 2024 =========================== -->
+    <div class="container" >
+        <h2 class="text-center font-weight-bold"> INNOVEX 2024</h2>
+        <h5 class="text-center">BE Students Final Year Annual Projects exhibition - DBIT's vision of producing employable engineers who can​ ideate and design solutions for problems relevant to both the society and industry.</h5>
+        
+
+    </div>
+    <br>
+  
+
+    <!-- ======================== About =========================== -->
+
+
+    <section class="portfolio-block website gradient">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-5">
+                    <center><img class="img-fluid" src="{% static 'website1/img/innovLogo.png' %}"></center>
+                </div>
+                <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                    <h3><center>What is INNOVEX?</center></h3>
+                    <p><center>Innovex is a platform for students to showcase their year-long effort and help encourage open-ended discussions and deliberations to improve the project's scope. Additionally, it encourages students to pitch their ideas and solutions in front of judges from industry, academia, and alumni.
+                </center></p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <br>
+    <br>
+    <br>
+    <!-- ======================== Princi father cleta =========================== -->        
+
+         <div class="container">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/Principal-New.png' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Dr. Sudhakar Mande </h4></center>
+              <center><h4 class="card-title-bold">Principal</h4></center>
+              
+              <p class="small text-left"> I take great pride in our team of faculty Project Coordinators who diligently monitored project progress and ensured that student teams remained focused. Their efforts to ensure the professional organization of INNOVEX 2024 are commendable. </p><p data-toggle="modal" data-target="#princi">Read more</p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/FrAnthonyPinto-New.jpeg' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold"> Fr. Anthony Pinto, sdb
+</h4></center>
+              <center><h4 class="card-title-bold"> Director</h4></center>
+              <p class="small text-left">Innovex 2024 is here, inspite of the Covid 19 pandemic, inspite of lockdowns!! Yes, this pandemic has taken lives, disrupted economies, left many homeless, penniless and jobless; separated us from loved ones and that which we normally love doing.</p><p data-toggle="modal" data-target="#mario">Read more</p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/ProfShivNegi-New.jpg' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Prof. Shiv Negi</h4></center>
+              <center><h4 class="card-title-bold">Innovex Co-ordinator </h4></center>
+              <p class="small text-left">Since 2017, Innovex has evolved with a brand new set of ideas and design solutions for industrial as well as societal problems. Now in 2021 we've come up with a website to showcase the Final Year Projects during Innovex!</p><p data-toggle="modal" data-target="#cleta">Read more</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<br>
+<br>
+            <!-- ============ msg modal ============ -->
+
+            <div class="modal fade" id="princi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <p>
+                    I take great pride in our team of faculty Project Coordinators who diligently monitored project progress and ensured that student teams remained focused. Their efforts to ensure the professional organization of INNOVEX 2024 are commendable.
+
+Likewise, I am proud of the faculty guides who adapted projects to yield meaningful outcomes despite the absence of physical models and incomplete validation.
+
+Lastly, the indomitable spirit of our young students and their readiness to push boundaries and explore uncharted territories to realize their project ideas (as the saying goes, when life gives you lemons, make lemonade) is truly commendable.
+
+I extend my best wishes to all students and faculty as they showcase the most significant activities of their engineering studies to the world.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="mario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <p>
+                      Innovex 2021 is here, inspite of the Covid 19 pandemic, inspite of lockdowns!! Yes, this pandemic has taken lives, disrupted economies, left many homeless, penniless and jobless; separated us from loved ones and that which we normally love doing. BUT - it has not been able to lock down Innovex 2021 at DBIT!! True. Innovex this year could not be held the way we would have liked it to be but it is here because of the indomitable spirit of DBITians and I would like to salute that spirit. My congratulations to the Innovex 2021 Project Committee Convener Prof. Cleta Pereira and her dedicated team for launching Innovex 2021.
+
+Over the years Innovex, the brainchild of our Principal Dr. Prasanna Nambiar has opened the floodgates of Innovation, Research, Skill Development and dogged Perseverance not only in our final year students but has heightened the aspirations of all the students of the First, Second and Third years too.
+
+Knowing that Innovex is a platform that can launch their careers with companies, fire their ambitions in startups and garner support from investors, students leave no stone unturned to give of their best. That is why over the years Innovex has always elicited passion in students and faculty to reach for the stars because the future is quite often shaped by what happens at this event.
+
+I commend all the final year students, their guides and mentors and wish that all our BE students sail into the future with flying colours.
+
+Congratulations!! Bon Voyage and God Bless.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="cleta" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <p>
+                      Since 2017, Innovex has evolved with a brand new set of ideas and design solutions for industrial as well as societal problems. Now in 2021 we've come up with a website to showcase the Final Year Projects during Innovex! This year, the pandemic has engulfed the world but nothing stopped our students and faculty from executing their projects and displaying their hard work. 
+
+It has been a pleasure working for this exhibition under the guidance of our Principal, Dr. Prasanna Nambiar. I would like to thank the department coordinators -  Prof. Sunantha (IT), Prof. Ditty (COMP), Prof. Freda (EXTC) & Prof. Mahesh (MECH) for their continuous support, Prof. Tayyabali for his immense effort into putting up this website and of course all our student volunteers! 
+
+Wishing all the Final Year students and their guides my very best. With great pleasure and pride, I welcome all our students, faculty and guests to immerse themselves into the broad range of ideas and innovations displayed here by the Final Year Students of DBIT!
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ 
+<!--  ============================  Winners section  ===================================== -->
+
+    <div class="container">
+      <center><h1>Winners Of Innovex 2023</h1></center>
+      <br>
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/Compsw.png'%}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Computer Science Department</h4></center>
+              <br>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/itw.png' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Information Technology Department</h4></center>
+              <br>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/extcw.png' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Electronics And Telecommunication Department</h4></center>
+              <br>
+            </div>
+          </div>
+
+          <div class="card">
+            <img class="card-img-top" src="{% static 'website1/img/mechw.png' %}" alt="Card image cap">
+            <br>
+            <div class="card-body">
+              <center><h4 class="card-title-bold">Mechanical Department</h4></center>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+<br>
+<br>
+<br>
+ 
+<!-- ============================ Departments ========================== -->
+<div class="container">
+      <center><h1>Our Departments</h1></center>
+      <br>
+        <div class="card-deck">
+          <div class="card">
+            {% if user.is_authenticated %}
+            <a target="_blank" href="itdept" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_it.png' %}" alt="Card image cap">
+            </a>
+            {% else %}
+            <a target="_blank" href="{% provider_login_url 'google' %}?next=/editdata" class="stretched-link" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_it.png' %}" alt="Card image cap">
+            </a>
+            {% endif %} 
+          </div>
+
+          <div class="card">
+            {% if user.is_authenticated %}
+            <a target="_blank" href="compsdept" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_comps.png' %}" alt="Card image cap">
+            </a>
+            {% else %}
+            <a target="_blank" href="{% provider_login_url 'google' %}?next=/editdata" class="stretched-link" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_comps.png' %}" alt="Card image cap">
+            </a>
+            {% endif %} 
+          </div>
+
+          <div class="card">
+            {% if user.is_authenticated %}
+            <a target="_blank" href="extcdept" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_extc.png' %}" alt="Card image cap">
+            </a>
+            {% else %}
+            <a target="_blank" href="{% provider_login_url 'google' %}?next=/editdata" class="stretched-link" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_extc.png' %}" alt="Card image cap">
+            </a>
+            {% endif %} 
+          </div>
+
+          <div class="card">
+            {% if user.is_authenticated %}
+            <a target="_blank" href="mechdept" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_mech.png' %}" alt="Card image cap">
+            </a>
+            {% else %}
+            <a target="_blank" href="{% provider_login_url 'google' %}?next=/editdata" class="stretched-link" style="text-decoration: none;color: black;">
+            <img class="card-img" src="{% static 'website1/img/logo_mech.png' %}" alt="Card image cap">
+            </a>
+            {% endif %} 
+          </div>
+        </div>
+    </div>
+
+<!-- ================================= Project coordinators credits ==================================== -->
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <center><h1>Innovex Project Coordinators</h1></center><br>
+      <div class="card-deck" style="padding-right:0px;padding-left:0px;">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/cleta.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Cleta Pereira</h6></center>
+            <center><h6 class="card-title">INNOVEX Coordinator</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/ditty.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Ditty Varghese</h6></center>
+            <center><h6 class="card-title">Project Coordinator-Dept. Computer</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/freda.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Freda Carvalho</h6></center>
+            <center><h6 class="card-title">Project Coordinator-Dept. EXTC</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Mahesh.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Mahesh Rajwade</h6></center>
+            <center><h6 class="card-title">Project Coordinator-Dept. Mechanical</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/sunantha.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Sunantha Krishnan</h6></center>
+            <center><h6 class="card-title">Project Coordinator-Dept. IT</h6></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ================================= Broture team credits ==================================== -->
+    <br>
+    <br>
+    <br>
+    <div class="container" id="Brochure">
+      <center><h1>Brochure Team</h1></center><br>
+      <div class="card-deck" style="padding-right:0px;padding-left:0px;"  >
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Haramal.JPG' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Haramal Liddar</h6></center>
+            <center><h6 class="card-title">Student Council</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/freda.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Freda Carvalho</h6></center>
+            <center><h6 class="card-title">Faculty- Dept. EXTC</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/sahu.JPG' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Siddhartha Sahu</h6></center>
+            <center><h6  id="web" class="card-title">Student Council</h6></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- ================================= website team credits ==================================== -->
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <center><h1>Website Development Team</h1></center><br>
+      <div class="card-deck" style="padding-right:0px;padding-left:0px;">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Tayyab.jpeg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Tayyabali Sayyad</h6></center>
+            <center><h6 class="card-title">Faculty- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/amish.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Amish Thekke Parambil</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/amanda.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Amanda Dcunha</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/abhijeet.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Abhijeet Ringe</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/rao.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Kshitij Rao</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/gowda.png' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Kartik Gowda</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ================================= volunteers credits ==================================== -->
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <center><h1>Innovex Volunteers</h1></center><br>
+      <div class="card-deck" style="padding-right:0px;padding-left:0px;">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/sheena.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Sheena Fernandes</h6></center>
+            <center><h6 class="card-title">Student- Dept. MECH</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/dylan.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Dylan Netto</h6></center>
+            <center><h6 class="card-title">Student- Dept. MECH</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/chaube.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Shruti Chaube</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/gupta.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Shruti Gupta</h6></center>
+            <center><h6 class="card-title">Student- Dept. IT</h6></center>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-deck" style="padding-right:0px;padding-left:0px;">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/VaibhavParate.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Vaibhav Parate</h6></center>
+            <center><h6 class="card-title">Student- Dept. EXTC</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/arka.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Arka Dey</h6></center>
+            <center><h6 class="card-title">Student- Dept. EXTC</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/jivin.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Mr. Jivin Varghese</h6></center>
+            <center><h6 class="card-title">Student- Dept. COMPS</h6></center>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/alvina.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Alvina Joy</h6></center>
+            <center><h6 class="card-title">Student- Dept. COMPS</h6></center>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+    <!-- ================================ Footer =========================== -->
+<br>
+<br>
+<br>
+
+
+    <footer class="page-footer">
+        <div class="container">
+            <!-- <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div> -->
+            <div class="font-weight-bold">Connect with us</div>
+            <div class="social-icons">
+              <a target="_blank" href="https://www.facebook.com/dbitofficial/"><i class="icon ion-social-facebook"></i></a>
+              <a target="_blank" href="https://instagram.com/dbitofficial?igshid=1804zdgob938u"><i class="icon ion-social-instagram-outline"></i></a>
+              <a target="_blank" href="https://twitter.com/dbit_mumbai?s=09"><i class="icon ion-social-twitter"></i></a>
+              <a target="_blank" href="https://youtube.com/channel/UC_GX-7wsZJMhc3lYgEMkAxA"><i class="icon ion-social-youtube"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/school/don-bosco-institute-of-technology"><i class="icon ion-social-linkedin"></i></a>
+            </div>
+
+            <div class="font-weight-bold" style="font-size: 15px;">Don Bosco Institute Of Technology, Premier Automobiles Road, Opp. HDIL Premier Exotica,
+Kurla (W), Mumbai. Maharashtra – 400070</div>
+            <div class="font-weight-bold" style="font-size: 15px;">&copy;2021 DBIT. All Rights Reserved.</div>
+            <div class="font-weight-bold">Designed and developed by<a href="#web" style="color: blue">Innovex Website Team</a></div>
+
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script type="text/javascript">
+      $(".datepicker").each((function(){new Pikaday({field:this})}));
+    </script>
+</body>
+
+</html>

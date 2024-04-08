@@ -1,0 +1,255 @@
+{% load socialaccount %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="{% static 'website1/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+    /* Style the input field */
+    #myInput{
+      padding: 50px;
+      margin-top: -20px;
+      border: 0;
+      border-radius: 0;
+      background: #f1f1f1;
+    } 
+
+    @media screen and (min-width: 676px) {
+        .modal-dialog  {
+          max-width: 1000px; /* New width for default modal */
+        }
+    }
+    </style>
+
+     <script language="javascript" type="text/javascript">
+    function dynamicdropdown(listindex)
+  {
+      document.getElementById("source1").selectedIndex=0;
+      document.getElementById("st").selectedIndex=0;
+      document.getElementById("ye").selectedIndex=0;
+      if (listindex=="other"){
+        document.getElementById("otherorg").style.display = "block";
+         document.getElementById("stream").style.display = "none";
+        document.getElementById("year").style.display = "none";
+
+
+      }
+      else{
+        document.getElementById("otherorg").style.display = "none";
+
+
+      }
+    }
+
+    function dynamicdropdownnew(listindex2){
+
+      var l=document.getElementById("source").options.selectedIndex;
+      console.log(l);
+
+      console.log(listindex2);
+      if (listindex2=="STUDENT" && l=="1"){
+          document.getElementById("stream").style.display = "none";
+        document.getElementById("year").style.display = "none";
+
+
+
+        document.getElementById("stream").style.display = "block";
+        document.getElementById("year").style.display = "block";
+
+      }
+      else if(listindex2=="---" || listindex2=="ALUMNI" || listindex2=="PARENTS" || listindex2=="GUEST"){
+
+         document.getElementById("st").selectedIndex=0;
+      document.getElementById("ye").selectedIndex=0;
+
+         document.getElementById("stream").style.display = "none";
+        document.getElementById("year").style.display = "none";
+
+      }
+      else if(listindex2="FACULTY" && l=="1"){
+
+        document.getElementById("st").selectedIndex=0;
+      document.getElementById("ye").selectedIndex=0;
+
+         document.getElementById("stream").style.display = "none";
+        document.getElementById("year").style.display = "none";
+
+         document.getElementById("stream").style.display = "block";
+
+
+
+      }
+     
+
+    }
+    
+  </script>
+
+</head>
+
+<body>
+
+<center><h1>UPDATE PROFILE</h1></center>
+<center><h5>PLEASE DON'T SKIP THIS STEP</h5></center>
+    <!-- navbar navbar-expand-lg navbar-light bg-light -->
+    <!-- navbar navbar-expand-lg fixed-top navbar-light bg-light ======main -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient ==== og -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient -->
+<div class="container" >
+  <form method="post">
+    {% csrf_token %}
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{name}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{email}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Organisation</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="source" name="org" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                  <option value="---">---</option>
+                  <option value="DBIT">DBIT</option>
+                  <option value="other">other</option>
+                </select>
+                
+            </div>
+             <div id="otherorg" style="display:none;"> 
+                  <br>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="other_org" placeholder="Enter Organisation name">
+                </div>
+
+        </div>
+
+         <div class="form-group row">
+           <br>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Designation</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="source1" name="role"  onchange="javascript: dynamicdropdownnew(this.options[this.selectedIndex].value);">
+                  <option value="---">---</option>
+                  <option value="STUDENT">Student</option>
+                  <option value="FACULTY">Faculty</option>
+                  <option value="ALUMNI">Alumni</option>
+                  <option value="PARENTS">Parent</option>
+                  <option value="GUEST">Guest</option>
+                </select>
+                <br>
+              </div> 
+        </div>
+
+        <div class="form-group row">
+              <div id="stream" style="display:none;"> 
+                 <label for="staticEmail" class="col-sm-2 col-form-label  ">Department</label>
+                   <div class="col-sm-10">
+                <select class="form-control" id="st" name="stream"  >
+                  <option value="---">---</option>
+                  <option value="IT">IT</option>
+                  <option value="COMPS">COMPS</option>
+                  <option value="EXTC">EXTC</option>
+                  <option value="MECH">MECH</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">  
+              <br>
+              <div id="year" style="display:none;"> 
+                <br>
+                 <label for="staticEmail" class="col-form-label col-sm-2 ">Year</label>
+                <div class="col-sm-10">
+                <select class="form-control" id="ye" name="year"  >
+                   <option value="---">---</option>
+                  <option value="FE">FE</option>
+                  <option value="SE">SE</option>
+                  <option value="TE">TE</option>
+                  <option value="BE">BE</option>
+                </select>
+              </div>
+            </div>
+              
+        </div>
+
+        
+      <!-- <div class="row">
+        <div class="form-group col-lg-2">
+          <label for="name">Name:</label>
+            </div>
+            <div class="form-group col-lg-3">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{name}}">
+            </div>
+    </div> -->
+
+     <!-- <div class="row">
+        <div class="form-group col-lg-7">
+          <label for="email">Email:</label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{email}}">
+        </div>
+    </div> -->
+
+     <!-- <div class="row">
+        <div class="form-group col-lg-7">
+          <label for="mobile">Mobile No.:</label>
+          <input   type="mobile" class="form-control"  id="mobile" name="mobile" placeholder="Enter Mobile No." >
+        </div>
+    </div>
+
+     <div class="row">
+        <div class="form-group col-lg-7">
+          <label for="org">Organisation Name:</label>
+          <input   type="org" class="form-control"  id="org" name="org" placeholder="Enter Organisation Name">
+        </div>
+    </div> -->
+
+      <br>
+      <button type="submit" class="btn btn-primary" onclick="location.href = '/';">Submit</button>
+
+    </form>
+  </div>
+
+
+    
+    <br>
+    <br>
+    <br>
+    
+
+
+
+  <!-- ===================================== Footer ======================================== -->
+
+</div>
+    <footer class="page-footer">
+        <!-- <div class="container">
+            <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div>
+            <div class="social-icons"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-instagram-outline"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
+        </div> -->
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+
+  
+</body>
+
+</html>
