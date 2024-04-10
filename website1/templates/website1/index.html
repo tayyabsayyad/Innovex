@@ -115,9 +115,10 @@
     <section id="slider">
       <input type="radio" name="slider" id="s1">
       <input type="radio" name="slider" id="s2">
-      <input type="radio" name="slider" id="s3" checked>
+      <input type="radio" name="slider" id="s3" checked >
       <input type="radio" name="slider" id="s4">
       <input type="radio" name="slider" id="s5">
+      <input type="radio" name="slider" id="s6" >
       <label for="s1" id="slide1">
         <img src="{% static 'website1/img/slider/DBCL-INNOVEX_1.jpeg' %}" height="100%" width="100%">
       </label>
@@ -125,7 +126,7 @@
             <img src="{% static 'website1/img/slider/DBCL-INNOVEX_2.png' %}" height="100%" width="100%">
       </label>
       <label for="s3" id="slide3">
-            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_3.png' %}" height="100%" width="100%">
+            <img src="{% static 'website1/img/slider/Banner1.png' %}" height="100%" width="100%">
       </label>
       <label for="s4" id="slide4">
             <img src="{% static 'website1/img/slider/DBCL-INNOVEX_4.jpeg' %}" height="100%" width="100%">
@@ -133,12 +134,10 @@
       <label for="s5" id="slide5">
             <img src="{% static 'website1/img/slider/DBCL-INNOVEX_5.jpeg' %}" height="100%" width="100%">
       </label>
-        <label for="s6" id="slide6">
-            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_6.jpeg' %}" height="100%" width="100%">
-      </label>
-         <label for="s7" id="slide7">
-            <img src="{% static 'website1/img/slider/DBCL-INNOVEX_7.jpeg' %}" height="100%" width="100%">
-      </label>
+{#      <label for="s6" id="slide6">#}
+{#            <img src="{% static 'website1/img/slider/Banner1.png' %}" height="100%" width="100%">#}
+{#      </label>#}
+
     </section>
 
 
@@ -206,7 +205,7 @@
             <br>
             <div class="card-body">
               <center><h4 class="card-title-bold">Prof. Shiv Negi</h4></center>
-              <center><h4 class="card-title-bold">Innovex Co-ordinator </h4></center>
+              <center><h4 class="card-title-bold">Dean R&D</h4></center>
               <p class="small text-left">Since 2017, Innovex has evolved with a brand new set of ideas and design solutions for industrial as well as societal problems. Now in 2021 we've come up with a website to showcase the Final Year Projects during Innovex!</p><p data-toggle="modal" data-target="#cleta">Read more</p>
             </div>
           </div>
@@ -284,14 +283,14 @@ Wishing all the Final Year students and their guides my very best. With great pl
 <!--  ============================  Winners section  ===================================== -->
 
     <div class="container">
-      <center><h1>Winners Of Innovex 2023</h1></center>
+      <center><h1>Winners of Innovex 2023</h1></center>
       <br>
         <div class="card-deck">
           <div class="card">
             <img class="card-img-top" src="{% static 'website1/img/Compsw.png'%}" alt="Card image cap">
             <br>
             <div class="card-body">
-              <center><h4 class="card-title-bold">Computer Science Department</h4></center>
+              <center><h4 class="card-title-bold">Computer Engineering Department</h4></center>
               <br>
             </div>
           </div>
@@ -392,41 +391,49 @@ Wishing all the Final Year students and their guides my very best. With great pl
     <div class="container">
       <center><h1>Innovex Project Coordinators</h1></center><br>
       <div class="card-deck" style="padding-right:0px;padding-left:0px;">
+
+          <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Prof_Janhavi_DBIT.png' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Janhavi Baikerikar</h6></center>
+            <center><h6 class="card-title">Project Coordinator - Dept. IT</h6></center>
+          </div>
+        </div>
+
+          <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Prof.Sana_DBIT.png' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Sana Shaikh</h6></center>
+            <center><h6 class="card-title">Project Coordinator - Dept. COMP</h6></center>
+          </div>
+        </div>
+
+          <div class="card">
+          <img class="card-img-top" src="{% static 'website1/img/Prof_Madhavi_DBIT_EXTC.jpg' %}"  alt="Card image cap">
+          <div class="card-body">
+            <center><h6 class="card-title">Ms. Madhavi Pednekar</h6></center>
+            <center><h6 class="card-title">Project Coordinator - Dept. EXTC</h6></center>
+          </div>
+        </div>
+
         <div class="card">
           <img class="card-img-top" src="{% static 'website1/img/cleta.jpg' %}"  alt="Card image cap">
           <div class="card-body">
             <center><h6 class="card-title">Ms. Cleta Pereira</h6></center>
-            <center><h6 class="card-title">INNOVEX Coordinator</h6></center>
+            <center><h6 class="card-title">Project Coordinator - Dept. - MECH</h6></center>
           </div>
         </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/ditty.jpeg' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Ms. Ditty Varghese</h6></center>
-            <center><h6 class="card-title">Project Coordinator-Dept. Computer</h6></center>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/freda.jpeg' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Ms. Freda Carvalho</h6></center>
-            <center><h6 class="card-title">Project Coordinator-Dept. EXTC</h6></center>
-          </div>
-        </div>
+
+
+
         <div class="card">
           <img class="card-img-top" src="{% static 'website1/img/Mahesh.jpeg' %}"  alt="Card image cap">
           <div class="card-body">
             <center><h6 class="card-title">Mr. Mahesh Rajwade</h6></center>
-            <center><h6 class="card-title">Project Coordinator-Dept. Mechanical</h6></center>
+            <center><h6 class="card-title">Project Coordinator-Dept. MECH</h6></center>
           </div>
         </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/sunantha.jpeg' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Ms. Sunantha Krishnan</h6></center>
-            <center><h6 class="card-title">Project Coordinator-Dept. IT</h6></center>
-          </div>
-        </div>
+
       </div>
     </div>
 
@@ -440,15 +447,15 @@ Wishing all the Final Year students and their guides my very best. With great pl
         <div class="card">
           <img class="card-img-top" src="{% static 'website1/img/Haramal.JPG' %}"  alt="Card image cap">
           <div class="card-body">
-            <center><h6 class="card-title">Mr. Haramal Liddar</h6></center>
+            <center><h6 class="card-title">Mr. Asad </h6></center>
             <center><h6 class="card-title">Student Council</h6></center>
           </div>
         </div>
         <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/freda.jpeg' %}"  alt="Card image cap">
+          <img class="card-img-top" src="{% static 'website1/img/Prof_Janhavi_DBIT.png' %}"  alt="Card image cap">
           <div class="card-body">
-            <center><h6 class="card-title">Ms. Freda Carvalho</h6></center>
-            <center><h6 class="card-title">Faculty- Dept. EXTC</h6></center>
+            <center><h6 class="card-title">Ms. Janhavi Baikerikar</h6></center>
+            <center><h6 class="card-title">Faculty - Department of Information Technology</h6></center>
           </div>
         </div>
         <div class="card">
@@ -490,26 +497,26 @@ Wishing all the Final Year students and their guides my very best. With great pl
             <center><h6 class="card-title">Student- Dept. IT</h6></center>
           </div>
         </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/abhijeet.jpg' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Mr. Abhijeet Ringe</h6></center>
-            <center><h6 class="card-title">Student- Dept. IT</h6></center>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/rao.jpg' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Mr. Kshitij Rao</h6></center>
-            <center><h6 class="card-title">Student- Dept. IT</h6></center>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static 'website1/img/gowda.png' %}"  alt="Card image cap">
-          <div class="card-body">
-            <center><h6 class="card-title">Mr. Kartik Gowda</h6></center>
-            <center><h6 class="card-title">Student- Dept. IT</h6></center>
-          </div>
+{#        <div class="card">#}
+{#          <img class="card-img-top" src="{% static 'website1/img/abhijeet.jpg' %}"  alt="Card image cap">#}
+{#          <div class="card-body">#}
+{#            <center><h6 class="card-title">Mr. Abhijeet Ringe</h6></center>#}
+{#            <center><h6 class="card-title">Student- Dept. IT</h6></center>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="card">#}
+{#          <img class="card-img-top" src="{% static 'website1/img/rao.jpg' %}"  alt="Card image cap">#}
+{#          <div class="card-body">#}
+{#            <center><h6 class="card-title">Mr. Kshitij Rao</h6></center>#}
+{#            <center><h6 class="card-title">Student- Dept. IT</h6></center>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="card">#}
+{#          <img class="card-img-top" src="{% static 'website1/img/gowda.png' %}"  alt="Card image cap">#}
+{#          <div class="card-body">#}
+{#            <center><h6 class="card-title">Mr. Kartik Gowda</h6></center>#}
+{#            <center><h6 class="card-title">Student- Dept. IT</h6></center>#}
+{#          </div>#}
         </div>
       </div>
     </div>
