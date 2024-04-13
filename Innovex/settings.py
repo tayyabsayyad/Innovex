@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website1.apps.Website1Config',
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -166,6 +167,10 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 4
 
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -181,3 +186,8 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+# Provider specific settings
+
+
