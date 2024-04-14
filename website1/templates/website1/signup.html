@@ -1,0 +1,191 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>INNOVEX 2024</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'website1/img/innovLogo.png' %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKS4J96H6V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZKS4J96H6V');
+    </script>
+    <link rel="stylesheet" href="{% static 'website1/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'website1/css/google_login_btn.css' %}" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'website1/css/sign_up_form.css' %}" crossorigin="anonymous" />
+</head>
+<body>
+
+
+    <!-- navbar navbar-expand-lg navbar-light bg-light -->
+    <!-- navbar navbar-expand-lg fixed-top navbar-light bg-light ======main -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient ==== og -->
+    <!-- navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient -->
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar gradient" >
+        <div class="container">
+            <!-- <a class="navbar-brand logo" href="#">Brand</a> -->
+
+            <a class="navbar-brand logo" href="/"> 
+                <img src="{% static 'website1/img/dbitlogo.png' %}" width="50" height="50" class="d-inline-block align-top" alt="">
+          
+            </a>
+            <div class="vl" style="height: 45px; border-left: solid black;"></div>&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand logo" href="/">
+                <img src="{% static 'website1/img/innovLogo.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+            INNOVEX
+            </a>
+              
+
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav">
+               <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="/">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="itdept">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compsdept">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html#Innovex">BROCHURE</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                         {{ user.username }}
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'website1:logout' %}" >Logout</a></li>
+                      </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:login' %}">Login</a></li>
+                    <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:signup' %}">Sign Up</a></li>
+                    {% endif %}
+
+                    <!-- {% if user.is_authenticated %}
+                      <li class="nav-item"><p>Hello, {{ user.username }}</p></li>
+                    {% else %}
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% provider_login_url 'google' %}">Login</a></li>
+                      
+                    {% endif %} -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+
+    <!-- ========================================================== -->
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="login-layout">
+        <div class="login-form">
+            <form name="form1" method="post" action="{% url 'website1:signup' %}">
+                {% csrf_token %}
+                <h3>Sign Up</h3>
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" id="username" required />
+
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Email" id="email" required />
+
+                <div class="full_name">
+                    <div>
+                        <label for="fname">First name</label>
+                        <input type="text" name="fname" id="fname" placeholder="First Name" required/>
+                    </div>
+                    <div>
+                        <label for="lname">Last name</label>
+                        <input type="text" name="lname" id="fname" placeholder="Last Name" required/>
+                    </div>
+
+                </div>
+        
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Password" id="password" required />
+
+                <label for="cnf_password">Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required />
+
+                {% for message in messages %}
+                <p style="color: red">{{message}}</p>
+                {% endfor %}
+
+                <input type="hidden" name="login_option" value="normal" />
+        
+                <button class="login-btn" type="submit">Sign Up</button>
+            </form>
+            <p class="text-muted" style="margin-top: 5px;">
+              already have an account? <a href="{% url 'website1:login' %}">Login</a>
+            </p>
+            <form name="form2" method="post" action="{% url 'website1:signup' %}">
+                {% csrf_token %}
+                <input type="hidden" name="login_option" value="google" />
+                <button type="submit" class="login-with-google-btn" >
+                  Sign up with Google
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================================ Footer =========================== -->
+<br>
+<br>
+<br>
+
+
+    <footer class="page-footer">
+        <div class="container">
+            <!-- <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div> -->
+            <div class="font-weight-bold">Connect with us</div>
+            <div class="social-icons">
+              <a target="_blank" href="https://www.facebook.com/dbitofficial/"><i class="icon ion-social-facebook"></i></a>
+              <a target="_blank" href="https://instagram.com/dbitofficial?igshid=1804zdgob938u"><i class="icon ion-social-instagram-outline"></i></a>
+              <a target="_blank" href="https://twitter.com/dbit_mumbai?s=09"><i class="icon ion-social-twitter"></i></a>
+              <a target="_blank" href="https://youtube.com/channel/UC_GX-7wsZJMhc3lYgEMkAxA"><i class="icon ion-social-youtube"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/school/don-bosco-institute-of-technology"><i class="icon ion-social-linkedin"></i></a>
+            </div>
+
+            <div class="font-weight-bold" style="font-size: 15px;">Don Bosco Institute Of Technology, Premier Automobiles Road, Opp. HDIL Premier Exotica,
+Kurla (W), Mumbai. Maharashtra – 400070</div>
+            <div class="font-weight-bold" style="font-size: 15px;">&copy;2021 DBIT. All Rights Reserved.</div>
+            <div class="font-weight-bold">Designed and developed by<a href="#web" style="color: blue">Innovex Website Team</a></div>
+
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script type="text/javascript">
+      $(".datepicker").each((function(){new Pikaday({field:this})}));
+    </script>
+</body>
+
+</html>

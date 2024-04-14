@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, auth
 from django.db import IntegrityError
 from website1.decorators import unauthenticated_user
 from website1.models import Project
@@ -15,11 +15,94 @@ org=""
 role=""
 
 def home(request):
-    if request.user.is_authenticated:
-        if not UserModel.objects.filter(user_email=request.user.email).exists():
-            return redirect("editdata")
-    
     return render(request, "website1/index.html")
+
+def login(request):
+    if request.method == "POST":
+        if request.POST["login_option"] == "normal":
+            username = request.POST["username"]
+            password = request.POST["password"]
+            print(f"username : {username}, password : {password}")
+            if username and password:
+                user = auth.authenticate(username=username, password=password)
+                if user is not None:
+                    auth.login(request, user)
+                    return redirect('website1:home')
+                else:
+                    messages.info(request, "Invalid credentials")
+                    return redirect('website1:login')
+            else:
+                messages.info(request, "please fill all the fields")
+                return redirect('website1:login')
+        elif request.POST["login_option"] == "google":
+            try:
+                username = request.user.username
+                email = request.user.email
+                password = None
+                user = auth.authenticate(username=username, password=password, email=email)
+                if user is not None:
+                    return redirect('website1:home')
+                else:
+                    return redirect('/accounts/google/login/')
+            except:
+                return redirect('/accounts/google/login/')
+    else:
+        return render(request, 'website1/login.html')
+
+def signup(request):
+    if request.method == "POST":
+        if request.POST["login_option"] == "normal":
+            username = request.POST["username"]
+            email = request.POST["email"]
+            pass1 = request.POST["password"]
+            pass2 = request.POST["confirm_password"]
+            first_name = request.POST["fname"]
+            last_name = request.POST["lname"]
+
+            if username and email and pass1 and pass2 and first_name and last_name:
+                if pass1 == pass2:
+                    if User.objects.filter(email=email).exists():
+                        messages.info(request, "Email Already Used")
+                        return redirect("website1:signup")
+                    elif User.objects.filter(username=username).exists():
+                        messages.info(request, "Username already used")
+                        return redirect("website:signup")
+                    else:
+                        user = User.objects.create_user(username=username, password=pass1, email=email, first_name=first_name, last_name=last_name)
+                        user.set_password(pass1)
+                        user.save()
+                        if user is not None:
+                            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        else:
+                            messages.info(request, "Some error occurred!")
+                            return redirect("website1:signup")
+                        return redirect('/editdata')
+                else:
+                    messages.info(request, "Passwords didn't match")
+                    return redirect("website1:signup")
+            else:
+                messages.info(request, "Please fill up all the fields!")
+                return redirect("website1:signup")
+        elif request.POST["login_option"] == "google":
+            try:
+                username = request.user.username
+                email = request.user.email
+                password = None
+                user = auth.authenticate(username=username, password=password, email=email)
+                if user is not None:
+                    return redirect('website1:home')
+                else:
+                    return redirect('/accounts/google/login/?next=/editdata')
+            except:
+                return redirect('/accounts/google/login/?next=/editdatas')
+    else:
+        return render(request, 'website1/signup.html')
+
+    return render(request, 'website1/signup.html')
+
+def logout(request):
+    logout(request)
+    return redirect('website1:home')
 
 @login_required(login_url='/')
 def itdept(request):
@@ -127,7 +210,7 @@ def edit_data(request):
     global user_dept1
     global user_year1
 
-    if UserModel.objects.filter(user_email=request.user.email).exists():
+    if UserModel.objects.filter(user_email=request.user.email).exists() == False:
         return redirect("/")
     elif request.method=="POST":
          
@@ -164,8 +247,8 @@ def edit_data(request):
     return render(request, "website1/form.html",context) 
 
 @login_required(login_url='login')
-def logout(request):
-    logout(request)
-    return redirect('login')
+def logout_view(request):
+    auth.logout(request)
+    return redirect('website1:login')
 
 
