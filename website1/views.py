@@ -94,7 +94,7 @@ def signup(request):
                 else:
                     return redirect('/accounts/google/login/?next=/editdata')
             except:
-                return redirect('/accounts/google/login/?next=/editdatas')
+                return redirect('/accounts/google/login/?next=/editdata')
     else:
         return render(request, 'website1/signup.html')
 
