@@ -72,10 +72,10 @@
                     <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html#Innovex">BROCHURE</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">IT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">COMPS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">EXTC</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% provider_login_url 'google' %}?next=/editdata">MECH</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">MECH</a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
                     {% endif %}
 
@@ -85,11 +85,12 @@
                          {{ user.username }}
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/accounts/logout" >Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'website1:logout' %}" >Logout</a></li>
                       </ul>
                     </li>
                     {% else %}
-                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% provider_login_url 'google' %}?next=/editdata">Login</a></li>
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:login' %}">Login</a></li>
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:signup' %}">Sign Up</a></li>
                     {% endif %}
 
                     <!-- {% if user.is_authenticated %}
