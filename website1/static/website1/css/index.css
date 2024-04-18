@@ -1,0 +1,19 @@
+.custom-img {
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the image is centered */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+
+.img {
+    width: 400px; /* Adjust the width as needed */
+    height: 500px; /* Adjust the height as needed */
+    /* overflow: hidden; Ensure the image fits within the div */
+}
+
+.img .custom-img {
+    width: 100%; /* Make the image fill the width of the div */
+    height: 100%; /* Make the image fill the height of the div */
+    object-fit:cover; /* Ensure the image maintains its aspect ratio and covers the entire div */
+}

@@ -301,18 +301,9 @@
         <!-- modal content goes here -->
         <div class="container" style="padding: 10px;">
           <div class="row">
-            <div class="col-lg-7">
-              <div class="embed-responsive embed-responsive-16by9">
-                {% if d.youtube_link|length > 5 %}
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{d.youtube_link|slice:'17:'}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {% else %}
-                <iframe class="embed-responsive-item" src="{{d.drive_link|slice:':66'}}preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {% endif %}
-              </div>
-            </div>
             
-            <div class="col-lg-5">
-              <center><h3 class="card-title" align="left">{{ d.proj_title }}</h3></center>
+            <div class="col-lg-6 p-4">
+              <center><h2 class="card-title" align="left">{{ d.proj_title }}</h2></center>
               <p style="font-size: 15px;" class="card-text1"><strong class="text bg-primary text-white">&nbsp;{{ d.proj_category }}&nbsp;</strong></p>
               <p class="card-text"><strong class="text-muted"><i class="fa fa-linkedin-square"> </i>&nbsp;
                 <a href="{{d.mem1_linkedin}}" target="_blank">{{ d.mem1_name }}</a>
@@ -326,12 +317,17 @@
                 &nbsp;| &nbsp;<a href="{{d.mem4_linkedin}}" target="_blank">{{ d.mem4_name }}</a>
                 {% endif %}
               </strong></p>
-              <p class="card-text">{{ d.proj_description }}
+              {% comment %} <p class="card-text">{{ d.proj_description }} {% endcomment %}
               </p>
               <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="{{d.tech_aspects}}" target="_blank"><button type="button" class="btn btn-dark btn-sm col-6">Technical aspects / poster</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <!-- <button type="button" class="btn btn-primary btn-sm col-5" data-toggle="collapse" data-target="#demo">Give your feedback</button> -->
               </div>
+            </div>
+            <div class="col-lg-6 pt-4 pb-4 pe-4">
+              <h2> Abstract </h2>
+              <p class="card-text text-justify ">{{ d.proj_description }}</p>
+
             </div>
           </div>
 
