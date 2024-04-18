@@ -148,7 +148,7 @@
             {% if d_pd.youtube_link|length > 5 %}            
             <img class="card-img-top" src="https://img.youtube.com/vi/{{d_pd.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_pd.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_pd.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_pd.proj_title }}</h5>
@@ -186,7 +186,7 @@
             {% if d_rb.youtube_link|length > 5 %}            
             <img class="card-img-top" src="https://img.youtube.com/vi/{{d_rb.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_rb.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_rb.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_rb.proj_title }}</h5>
@@ -224,7 +224,7 @@
             {% if d_et.youtube_link|length > 5 %}            
             <img class="card-img-top" src="https://img.youtube.com/vi/{{d_et.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_et.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_et.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_et.proj_title }}</h5>
@@ -262,7 +262,7 @@
             {% if d_env.youtube_link|length > 5 %}            
             <img class="card-img-top" src="https://img.youtube.com/vi/{{d_env.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_env.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_env.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_env.proj_title }}</h5>
