@@ -70,7 +70,9 @@
                     <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
                     <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="mechdept">MECH</a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
-
+                    {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="feedback">FEEDBACK</a></li>
+                    {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >

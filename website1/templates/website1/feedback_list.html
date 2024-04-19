@@ -1,0 +1,139 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>INNOVEX 2024</title>
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'website1/img/innovLogo.png' %}">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKS4J96H6V"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+    
+          gtag('config', 'G-ZKS4J96H6V');
+        </script>
+        <link rel="stylesheet" href="{% static 'website1/css/bootstrap.min.css' %}" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'website1/css/google_login_btn.css' %}" crossorigin="anonymous" />
+        <link rel="stylesheet" href="{% static 'website1/css/login_form.css' %}" crossorigin="anonymous" />
+        <style>
+            /* Custom CSS */
+            .feedback-card {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 15px;
+                background-color: #f9f9f9;
+            }
+        </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" >
+        <div class="container">
+
+            <a class="navbar-brand logo" href="/"> 
+                <img src="{% static 'website1/img/dbitlogo.png' %}" width="50" height="50" class="d-inline-block align-top" alt="">
+          
+            </a>
+            <div class="vl" style="height: 45px; border-left: solid black;"></div>&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand logo" href="/">
+                <img src="{% static 'website1/img/innovLogo.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+            INNOVEX
+            </a>
+
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav">
+               <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link " href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="itdept">IT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compsdept">COMPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html">BROCHURE</a></li>
+                    {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="feedback">FEEDBACK</a></li>
+                    {% endif %} 
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                         {{ user.username }}
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/logout" >Logout</a></li>
+                      </ul>
+                    </li>
+                    {% endif %}
+                    <!-- <li class="nav-item"><a class="btn btn-dark" role="button" href="#">Login</a></li> -->
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+   </br>
+   
+   
+    <div class="container mt-5">
+        <h1 class="mb-4">Feedback List</h1>
+
+        <form method="GET" class="mb-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Search by Project Title">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <select name="department" class="form-control">
+                        <option value="">Select Department</option>
+                        <option value="IT">IT</option>
+                        <option value="COMPS">Mechanical</option>
+                        <option value="MECH">Computer Science</option>
+                        <option value="EXTC">Electronics and Telecommunication</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <select name="rating" class="form-control">
+                        <option value="">Select Feedback Rating</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            {% for fb in feedback_data %}
+            <div class="col-md-6 mb-4">
+                <div class="feedback-card">
+                    <h2>{{ fb.project_f__proj_title }}</h2>
+                    <p><strong>Department:</strong> {{ fb.project_dept }}</p>
+                    <p><strong>Average Rating:</strong>  {{ fb.average_rating|floatformat:"1" }}</p>
+                    <p><strong>Total Feedback Count:</strong> {{ fb.feedback_count }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p class="col-md-12">No feedback found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

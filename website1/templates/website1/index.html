@@ -66,7 +66,7 @@
                <i class="fa fa-bars fa-2x"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                {% comment %} <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="/">Home</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="itdept">IT</a></li>
@@ -74,6 +74,8 @@
                     <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
                     <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html#Innovex">BROCHURE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mechdept">FEEDBACK</a></li>
+
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">IT</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">COMPS</a></li>
@@ -102,7 +104,37 @@
                       <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% provider_login_url 'google' %}">Login</a></li>
                       
                     {% endif %} -->
-                </ul>
+                </ul> {% endcomment %}
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="/">Home</a></li>
+                  {% if user.is_authenticated %}
+                      <li class="nav-item"><a class="nav-link" href="itdept">IT</a></li>
+                      <li class="nav-item"><a class="nav-link" href="compsdept">COMPS</a></li>
+                      <li class="nav-item"><a class="nav-link" href="extcdept">EXTC</a></li>
+                      <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
+                      <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html#Innovex">BROCHURE</a></li>
+                      {% if user.is_staff %}
+                          <li class="nav-item"><a class="nav-link" href="feedback">FEEDBACK</a></li>
+                      {% endif %}
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{ user.username }}
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'website1:logout' %}">Logout</a></li>
+                          </ul>
+                      </li>
+                  {% else %}
+                      <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">IT</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">COMPS</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">EXTC</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'website1:login' %}">MECH</a></li>
+                      <li class="nav-item"><a target="_blank" class="nav-link" href="https://drive.google.com/file/d/1wXVDBkTC5lcMYs0M9gFiCUn3DLkdCTz1/view?usp=sharing">BROCHURE</a></li>
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:login' %}">Login</a></li>
+                      <li class="nav-item"><a class="btn btn-dark" role="button"  href="{% url 'website1:signup' %}">Sign Up</a></li>
+                  {% endif %}
+              </ul>
+              
             </div>
         </div>
     </nav>

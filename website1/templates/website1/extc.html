@@ -75,6 +75,9 @@
                     <li class="nav-item"><a class="nav-link active" style="border-bottom: 5px solid #000;" href="extcdept">EXTC</a></li>
                     <li class="nav-item"><a class="nav-link" href="mechdept">MECH</a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.dbit.in/innovex.html">BROCHURE</a></li>
+                    {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="feedback">FEEDBACK</a></li>
+                     {% endif %}
 
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
