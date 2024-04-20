@@ -295,7 +295,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <!-- modal content goes here -->
-        <div class="container" style="padding: 10px;">
+        {% comment %} <div class="container" style="padding: 10px;">
           <div class="row">
             <div class="col-lg-7">
               <div class="embed-responsive embed-responsive-16by9">
@@ -374,6 +374,81 @@
           </div>
           <!-- feedback end -->
 
+        </div> {% endcomment %}
+        <div class="container" style="padding: 10px;">
+          <div class="row">
+            
+            <div class="col-lg-6 p-4">
+              <center><h2 class="card-title" align="left">{{ d.proj_title }}</h2></center>
+              <p style="font-size: 15px;" class="card-text1"><strong class="text bg-primary text-white">&nbsp;{{ d.proj_category }}&nbsp;</strong></p>
+              <p class="card-text"><strong class="text-muted"><i class="fa fa-linkedin-square"> </i>&nbsp;
+                <a href="{{d.mem1_linkedin}}" target="_blank">{{ d.mem1_name }}</a>
+                {% if d.mem2_name != "0" %} 
+                &nbsp;|&nbsp; <a href="{{d.mem2_linkedin}}" target="_blank">{{ d.mem2_name }}</a> 
+                {% endif %}
+                {% if d.mem3_name != "0" %}
+                &nbsp;| &nbsp;<a href="{{d.mem3_linkedin}}" target="_blank">{{ d.mem3_name }}</a> 
+                {% endif %}
+                {% if d.mem4_name != "0" %}
+                &nbsp;| &nbsp;<a href="{{d.mem4_linkedin}}" target="_blank">{{ d.mem4_name }}</a>
+                {% endif %}
+              </strong></p>
+              {% comment %} <p class="card-text">{{ d.proj_description }} {% endcomment %}
+              </p>
+              <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{d.tech_aspects}}" target="_blank"><button type="button" class="btn btn-dark btn-sm col-6">Technical aspects / poster</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <button type="button" class="btn btn-primary btn-sm col-5" data-toggle="collapse" data-target="#demo">Give your feedback</button> -->
+              </div>
+            </div>
+            <div class="col-lg-6 pt-4 pb-4 pe-4">
+              <h2> Abstract </h2>
+              <p class="card-text text-justify ">{{ d.proj_description }}</p>
+
+            </div>
+          </div>
+
+          <!-- feedback -->
+          <br>
+          <div id="demo"  style="background-color: #e0ebeb">
+            <br>
+            <center><h3>Rate the project</h3></center>
+            <br>
+            <form method="post"> {% csrf_token %}
+              <input type="hidden" name="for_proj" value="{{d.proj_title}}" >
+              <div class="row">
+                <div class="col-lg-5">
+                  <center><h5>What is your overall rating for the project: </h5></center>
+                </div>
+                <div class="col-lg-7">
+                  <div class="form-group" style="padding-right:10px;padding-left:10px; " >
+                    <select class="form-control" id="exampleFormControlSelect1" name="rating"  >
+                      <option value="5">Excellent</option>
+                      <option value="4">Very good</option>
+                      <option value="3">Good</option>
+                      <option value="2">Average</option>
+                      <option value="1">Poor</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5">
+                  <center><h5>Your comments: </h5></center>
+                </div>
+                <div class="col-lg-7 ">
+                  <div class="form-group" style="padding: 10px;">
+                    <textarea  class="form-control" id="exampleFormControlTextarea1" rows="3" name="comments"></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+              <br>
+
+            </form>
+          </div>
+          <!-- feedback end -->
         </div>
         <!-- modal content end -->
         <div class="modal-footer">

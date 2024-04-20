@@ -160,10 +160,22 @@ def compsdept(request):
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
+    return render(request, "website1/comps.html",context)    
 
-    return render(request, "website1/comps.html",context)
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+
+    # return render(request, "website1/comps.html",context)
 
 @login_required(login_url='/')
 def mechdept(request):
@@ -181,13 +193,27 @@ def mechdept(request):
     'datamech_cw':datamech_cw
     }
 
+
     if request.method=="POST":
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
 
     return render(request, "website1/mech.html",context)
+
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+
+    # return render(request, "website1/mech.html",context)
 
 @login_required(login_url='/')
 def extcdept(request):
@@ -207,11 +233,23 @@ def extcdept(request):
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        # print(rating,cmts,feedb_for_name,request.user, "thisss issssssssssss ")
-        print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
-        
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
     return render(request, "website1/extc.html",context)
+
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     # print(rating,cmts,feedb_for_name,request.user, "thisss issssssssssss ")
+    #     print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        
+    # return render(request, "website1/extc.html",context)
 
 def privacypolicy(request):
     return render(request, "website1/privacypolicy.html")    
