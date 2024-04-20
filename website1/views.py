@@ -1,3 +1,4 @@
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,7 @@ from website1.decorators import unauthenticated_user
 from website1.models import Project
 from website1.models import UserModel
 from website1.models import Feedback
+from collections import defaultdict
 
 user_dept1=""
 user_year1=""
@@ -124,8 +126,19 @@ def itdept(request):
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email),user_role=UserModel.objects.get(user_email=request.user.email).user_designation,org_name=UserModel.objects.get(user_email=request.user.email).organisation)
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
     return render(request, "website1/it.html",context)
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email),user_role=UserModel.objects.get(user_email=request.user.email).user_designation,org_name=UserModel.objects.get(user_email=request.user.email).organisation)
+    # return render(request, "website1/it.html",context)
 
 @login_required(login_url='/')
 def compsdept(request):
@@ -147,10 +160,22 @@ def compsdept(request):
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
+    return render(request, "website1/comps.html",context)    
 
-    return render(request, "website1/comps.html",context)
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+
+    # return render(request, "website1/comps.html",context)
 
 @login_required(login_url='/')
 def mechdept(request):
@@ -168,13 +193,27 @@ def mechdept(request):
     'datamech_cw':datamech_cw
     }
 
+
     if request.method=="POST":
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
 
     return render(request, "website1/mech.html",context)
+
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+
+    # return render(request, "website1/mech.html",context)
 
 @login_required(login_url='/')
 def extcdept(request):
@@ -194,11 +233,23 @@ def extcdept(request):
         rating = int(request.POST.get("rating"))
         cmts = request.POST.get("comments")
         feedb_for_name = request.POST.get("for_proj") 
-        # print(rating,cmts,feedb_for_name,request.user, "thisss issssssssssss ")
-        print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
-        Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
-        
+        Feedback.objects.create(rating=rating, 
+                                user_feedback=cmts,
+                                user_f=User.objects.get(email=request.user.email),
+                                project_f = Project.objects.get(proj_title=feedb_for_name),
+                                project_dept=Project.objects.get(proj_title=feedb_for_name).dept,
+                                )
     return render(request, "website1/extc.html",context)
+
+    # if request.method=="POST":
+    #     rating = int(request.POST.get("rating"))
+    #     cmts = request.POST.get("comments")
+    #     feedb_for_name = request.POST.get("for_proj") 
+    #     # print(rating,cmts,feedb_for_name,request.user, "thisss issssssssssss ")
+    #     print(Project.objects.get(proj_title=feedb_for_name).dept,'thiss issssssssssss')
+    #     Feedback.objects.create(rating=rating, user_feedback=cmts , project_dept=Project.objects.get(proj_title=feedb_for_name).dept , project_f=Project.objects.get(proj_title=feedb_for_name), user_f=UserModel.objects.get(user_email=request.user.email))
+        
+    # return render(request, "website1/extc.html",context)
 
 def privacypolicy(request):
     return render(request, "website1/privacypolicy.html")    
@@ -251,4 +302,130 @@ def logout_view(request):
     auth.logout(request)
     return redirect('website1:login')
 
+
+
+
+
+
+
+# ====================== feedback =====================
+from django.db.models import Avg, Count
+def feedback_list(request):
+    feedback_def = Feedback.objects.all()
+    
+    # Filter based on search query
+    search_query = request.GET.get('search', '')
+    if search_query:
+        feedback_def = feedback_def.filter(project_f__proj_title__icontains=search_query)
+
+    # Filter based on department
+    department = request.GET.get('department', '')
+    if department:
+        feedback_def = feedback_def.filter(project_dept=department)
+
+    # Filter based on feedback rating
+    rating = request.GET.get('rating', '')
+    if rating:
+        feedback_def = feedback_def.filter(rating=rating)
+
+    feedback_data = feedback_def.values(
+        'project_f__proj_title', 'project_dept'
+    ).annotate(
+        feedback_count=Count('project_f__proj_title'),
+        average_rating=Avg('rating')
+    ).order_by('-feedback_count')[:5]
+    
+    return render(request, 'website1/feedback_list.html', {'feedback_data': feedback_data})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ============================= feed back ======================
+# def feedback_list(request):
+#     feedback_def = Feedback.objects.all()
+    
+#     # Filter based on search query
+#     search_query = request.GET.get('search', '')
+#     if search_query:
+#         feedback_def = feedback_def.filter(project_f__proj_title__icontains=search_query)
+
+#     # Filter based on department
+#     department = request.GET.get('department', '')
+#     if department:
+#         feedback_def = feedback_def.filter(project_dept=department)
+
+#     # Filter based on feedback rating
+#     rating = request.GET.get('rating', '')
+#     if rating:
+#         feedback_def = feedback_def.filter(rating=rating)
+
+
+#     # return render(request, 'feedback_list.html', {'feedback': feedback})
+#     return render(request, "website1/feedback_list.html", {'feedback': list(feedback_formatter(feedback_def))}) 
+
+# def feedback_formatter(feedback_def):    
+#     feedback_data = defaultdict(dict)
+
+#     # Iterate through the feedback objects
+#     for feedback in feedback_def:
+#         project_title = feedback.project_f.proj_title
+#         department = feedback.project_dept
+#         rating = feedback.rating
+
+#         # Initialize project data if not present
+#         if project_title not in feedback_data:
+#             feedback_data[project_title] = {
+#                 'department': department,
+#                 'count': 0,
+#                 'sum': 0,
+#                 'average': 0,
+#                 'ratings_count': defaultdict(int)
+#             }
+
+#         # Update feedback statistics
+#         feedback_data[project_title]['count'] += 1
+#         feedback_data[project_title]['sum'] += rating
+#         feedback_data[project_title]['average'] = feedback_data[project_title]['sum'] / feedback_data[project_title]['count']
+#         feedback_data[project_title]['ratings_count'][rating] += 1
+
+#     # Print the feedback data dictionary
+#     for project_title, data in feedback_data.items():
+#         print(f"Project Title: {project_title}")
+#         print(f"Department: {data['department']}")
+#         print(f"Total Feedback Count: {data['count']}")
+#         print(f"Total Feedback Sum: {data['sum']}")
+#         print(f"Average Rating: {data['average']}")
+#         print("Feedback Counts by Rating:")
+#         for rating, count in data['ratings_count'].items():
+#             print(f"Rating {rating}: {count}")
+
+#     return feedback_data
 

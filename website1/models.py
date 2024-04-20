@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User, Group, auth
+
 
 
 DEPT_CHOICES = (
@@ -49,6 +51,7 @@ class Project(models.Model):
         return str(self.proj_title)
 
 
+
 class UserModel(models.Model):
     user_id          = models.AutoField(primary_key=True)
     user_name        = models.CharField(max_length=100)
@@ -67,7 +70,7 @@ class Feedback(models.Model):
     project_f     = models.ForeignKey(Project, on_delete=models.CASCADE)
     rating        = models.IntegerField()
     user_feedback = models.TextField()
-    user_f        = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user_f        = models.ForeignKey(User, on_delete=models.CASCADE)
     user_role     = models.CharField(max_length=50,default="STUDENT")
     org_name      = models.CharField(max_length=100,default="DBIT") 
     feedback_time = models.DateTimeField(default=datetime.now)
