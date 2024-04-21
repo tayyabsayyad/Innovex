@@ -144,9 +144,9 @@
       <div class="col-lg-3">
           <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_pd.proj_id }}">
             {% if d_pd.youtube_link|length > 5 %}            
-            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_pd.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://img.youtube.com/vi/{{d_pd.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap"> {% endcomment %}
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_pd.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_pd.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_pd.proj_title }}</h5>
@@ -181,9 +181,9 @@
       <div class="col-lg-3">
           <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_rb.proj_id }}">
             {% if d_rb.youtube_link|length > 5 %}            
-            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_rb.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://img.youtube.com/vi/{{d_rb.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap"> {% endcomment %}
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_rb.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_rb.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_rb.proj_title }}</h5>
@@ -219,9 +219,9 @@
       <div class="col-lg-3">
           <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_env.proj_id }}">
             {% if d_env.youtube_link|length > 5 %}            
-            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_env.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://img.youtube.com/vi/{{d_env.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap"> {% endcomment %}
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_env.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_env.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_env.proj_title }}</h5>
@@ -256,9 +256,9 @@
       <div class="col-lg-3">
           <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_cw.proj_id }}">
             {% if d_env.youtube_link|length > 5 %}
-            <img class="card-img-top" src="https://img.youtube.com/vi/{{d_cw.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://img.youtube.com/vi/{{d_cw.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap"> {% endcomment %}
             {% else %}
-            <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_cw.drive_link|slice:'32:65'}}" alt="Card image cap">
+            {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_cw.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ d_cw.proj_title }}</h5>
