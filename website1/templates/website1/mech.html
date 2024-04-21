@@ -107,8 +107,9 @@
             <li><a id="d1" href="#" onclick="filter(document.getElementById('d1').innerHTML);">All</a></li>
             <li><a id="d2" href="#" onclick="filter(document.getElementById('d2').innerHTML);">Product Development</a></li>
             <li><a id="d3" href="#" onclick="filter(document.getElementById('d3').innerHTML);">Research</a></li>
-            <li><a id="d4" href="#" onclick="filter(document.getElementById('d4').innerHTML);">Community welfare</a></li>
+            <li><a id="d4" href="#" onclick="filter(document.getElementById('d4').innerHTML);">Emerging technology</a></li>
             <li><a id="d5" href="#" onclick="filter(document.getElementById('d5').innerHTML);">Env. Sustainability</a></li>
+            <li><a id="d6" href="#" onclick="filter(document.getElementById('d6').innerHTML);">Community Welfare</a></li>
           </ul>
         </div>
       </div>
@@ -116,7 +117,7 @@
 
     <script>
       function filter(p){
-        l=["Product Development","Research","Community welfare","Env. Sustainability"]
+        l=["Product Development","Research","Emerging technology" ,"Env. Sustainability","Community Welfare"]
         var i=0;
         for (i = 0; i < l.length; i++){
                   console.log(l[i]);
@@ -210,6 +211,47 @@
 </div>
 
 <!-- =============================== category 3======================== -->
+<div id="Emerging technology">
+  <hr style="height:3px;border-width:0;background-color:#000">
+    <h5 class="font-weight-bold">EMERGING TECHNOLOGY</h5>
+  <div class="row">
+    <!-- dynamic rendering -->
+    {% for d_cw in datamech_et %}
+    <div class="col-lg-3">
+        <div class="card mb-3" data-toggle="modal" data-target="#proj{{ d_cw.proj_id }}">
+          {% if d_env.youtube_link|length > 5 %}
+          {% comment %} <img class="card-img-top" src="https://img.youtube.com/vi/{{d_cw.youtube_link|slice:'17:'}}/0.jpg" alt="Card image cap"> {% endcomment %}
+          {% else %}
+          {% comment %} <img class="card-img-top" src="https://drive.google.com/thumbnail?id={{d_cw.drive_link|slice:'32:65'}}" alt="Card image cap"> {% endcomment %}
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ d_cw.proj_title }}</h5>
+            <!-- <p class="card-text-bold">Traffic Signal Duration Control Using Deep Learning.</p> -->
+            <p class="card-text"><small class="text-muted">
+              {% if d_cw.mem1_name != "0" %}
+                 {{ d_cw.mem1_name }} 
+                 {% endif %} 
+              {% if d_cw.mem2_name != "0" %} 
+                | {{ d_cw.mem2_name }} 
+                {% endif %}  
+              {% if d_cw.mem3_name != "0" %}
+                | {{ d_cw.mem3_name }} 
+                {% endif %} 
+              {% if d_cw.mem4_name != "0" %}
+                | {{ d_cw.mem4_name }}
+              {% endif %} 
+            </small></p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+<br>
+<br>
+<br>
+</div>
+
+<!-- =============================== category 4======================== -->
 <div id="Env. Sustainability">
     <hr style="height:3px;border-width:0;background-color:#000">
       <h5 class="font-weight-bold">ENVIRONMENT SUSTAINABILITY</h5>
@@ -246,8 +288,9 @@
       {% endfor %}
     </div>
 </div>
-<!-- =============================== category 4======================== -->
-<div id="Community welfare">
+
+<!-- =============================== category 5======================== -->
+<div id="Community Welfare">
     <hr style="height:3px;border-width:0;background-color:#000">
       <h5 class="font-weight-bold">COMMUNITY WELFARE</h5>
     <div class="row">
