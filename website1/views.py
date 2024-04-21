@@ -113,13 +113,15 @@ def itdept(request):
     datait_pd=Project.objects.filter(dept='it').filter(proj_category='PRODUCT DEVELOPMENT')
     datait_et=Project.objects.filter(dept='it').filter(proj_category='EMERGING TECHNOLOGY')
     datait_env=Project.objects.filter(dept='it').filter(proj_category='SUSTAINABILITY')
+    datait_cw=Project.objects.filter(dept='it').filter(proj_category='COMMUNITY WELFARE')
 
     context={
     'datait':datait,
     'datait_rb':datait_rb,
     'datait_pd':datait_pd,
     'datait_et':datait_et,
-    'datait_env':datait_env
+    'datait_env':datait_env,
+    'datait_cw':datait_cw
     }
 
     if request.method=="POST":
@@ -147,13 +149,16 @@ def compsdept(request):
     datacomps_pd=Project.objects.filter(dept='comps').filter(proj_category='PRODUCT DEVELOPMENT')
     datacomps_et=Project.objects.filter(dept='comps').filter(proj_category='EMERGING TECHNOLOGY')
     datacomps_env=Project.objects.filter(dept='comps').filter(proj_category='SUSTAINABILITY')
+    datacomps_cw=Project.objects.filter(dept='comps').filter(proj_category='COMMUNITY WELFARE')
+    
 
     context={
     'datacomps':datacomps,
     'datacomps_rb':datacomps_rb,
     'datacomps_pd':datacomps_pd,
     'datacomps_et':datacomps_et,
-    'datacomps_env':datacomps_env
+    'datacomps_env':datacomps_env,
+    'datacomps_cw':datacomps_cw
     }
 
     if request.method=="POST":
@@ -182,6 +187,7 @@ def mechdept(request):
     datamech=Project.objects.filter(dept='mech')
     datamech_rb=Project.objects.filter(dept='mech').filter(proj_category='RESEARCH BASED')
     datamech_pd=Project.objects.filter(dept='mech').filter(proj_category='PRODUCT DEVELOPMENT')
+    datamech_et=Project.objects.filter(dept='mech').filter(proj_category='EMERGING TECHNOLOGY')
     datamech_env=Project.objects.filter(dept='mech').filter(proj_category='SUSTAINABILITY')
     datamech_cw=Project.objects.filter(dept='mech').filter(proj_category='COMMUNITY WELFARE')
 
@@ -189,6 +195,7 @@ def mechdept(request):
     'datamech':datamech,
     'datamech_rb':datamech_rb,
     'datamech_pd':datamech_pd,
+    'datamech_et':datamech_et,
     'datamech_env':datamech_env,
     'datamech_cw':datamech_cw
     }
@@ -221,12 +228,16 @@ def extcdept(request):
     dataextc_rb=Project.objects.filter(dept='extc').filter(proj_category='RESEARCH BASED')
     dataextc_pd=Project.objects.filter(dept='extc').filter(proj_category='PRODUCT DEVELOPMENT')
     dataextc_et=Project.objects.filter(dept='extc').filter(proj_category='EMERGING TECHNOLOGY')
+    dataextc_env=Project.objects.filter(dept='extc').filter(proj_category='SUSTAINABILITY')
+    dataextc_cw=Project.objects.filter(dept='extc').filter(proj_category='COMMUNITY WELFARE')
 
     context={
     'dataextc':dataextc,
     'dataextc_rb':dataextc_rb,
     'dataextc_pd':dataextc_pd,
-    'dataextc_et':dataextc_et
+    'dataextc_et':dataextc_et,
+    'dataextc_cw':dataextc_cw,
+    'dataextc_env':dataextc_env
     }
 
     if request.method=="POST":
